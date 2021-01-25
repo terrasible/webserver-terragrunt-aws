@@ -126,7 +126,12 @@ To run the setup you need to install the terragrunt
 
 1. Clone the repository
 2. Navigate to the directory `terragrunt/ap-southeast-1`
-3. Run the below command 
+3. Create the user on AWS console and download the credentials file 
+```
+	export AWS_ACCESS_KEY_ID="******************************"
+	export AWS_SECRET_ACCESS_KEY=***************************
+```
+4. Run the below command 
 
     ```terragrunt apply-all --terragrunt-non-interactive```
 
