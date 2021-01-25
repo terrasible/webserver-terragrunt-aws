@@ -135,6 +135,14 @@ To run the setup you need to install the terragrunt
 
     ```terragrunt apply-all --terragrunt-non-interactive```
 
+## Access the Site
+
+1. Navigate the the dir cd `/terragrunt/ap-southeast-1/dev/alb`
+2. Run the Command `terragrunt output`
+3. find the dns name of ALB with name `this_lb_dns_name	
+4. Hit The URL with https://<this_lb_dns_name> (recommended to use safari browser as we are using self-signed certicicate)
+5. OR you can use curl https://<this_lb_dns_name> -k 
+
 ## Tools
 
 ### Terragrunt
