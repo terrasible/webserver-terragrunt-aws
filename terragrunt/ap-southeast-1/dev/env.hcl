@@ -3,5 +3,6 @@
 locals {
   environment        = "dev"
   common_name_prefix = "mastercard"
-  ssh_machine_ip     = "13.234.0.44/32"
+  #ssh_machine_ip     = "13.234.0.44/32"
+  #key_name           = "mastercard"
 }

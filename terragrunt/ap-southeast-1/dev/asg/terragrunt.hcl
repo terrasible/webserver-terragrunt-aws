@@ -41,7 +41,7 @@ inputs = {
   instance_type               = "t2.micro"
   security_groups             = ["${dependency.sg.outputs.this_security_group_id}"]
   user_data                   = file("${get_parent_terragrunt_dir()}/ap-southeast-1/dev/asg/data.sh")
-  key_name                    = "mastercard"
+  #key_name                    = "${local.key_name}"
   associate_public_ip_address = false
   ebs_block_device = [
     {
@@ -63,8 +63,8 @@ inputs = {
   asg_name                  = "${local.common_name_prefix}-asg"
   vpc_zone_identifier       = "${dependency.subnet.outputs.private_subnets}"
   health_check_type         = "EC2"
-  min_size                  = 0
-  max_size                  = 1
+  min_size                  = 1
+  max_size                  = 4
   desired_capacity          = 1
   wait_for_capacity_timeout = 0
 

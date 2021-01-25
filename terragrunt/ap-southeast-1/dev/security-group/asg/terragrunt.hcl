@@ -10,7 +10,7 @@ locals {
   region             = local.region_vars.locals.region
   zones              = local.region_vars.locals.zones
   common_name_prefix = local.environment_vars.locals.common_name_prefix
-  ssh_machine_ip     = local.environment_vars.locals.ssh_machine_ip
+  #ssh_machine_ip     = local.environment_vars.locals.ssh_machine_ip
 }
 
 # Terragrunt will copy the Terraform configurations specified by the source parameter, along with any files in the
@@ -34,17 +34,17 @@ inputs = {
   vpc_id = "${dependency.vpc.outputs.vpc_id}"
 
   # Allow OpenVPN client CIDR
-  ingress_cidr_blocks = ["0.0.0.0/0"]
-  ingress_rules       = ["http-80-tcp", "https-443-tcp"]
-  ingress_with_cidr_blocks = [
-    {
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
-      cidr_blocks = "${local.ssh_machine_ip}"
-      description = "ssh to server from local PC"
-    }
-  ]
+  ingress_cidr_blocks = ["172.16.0.0/16"]
+  ingress_rules       = ["http-80-tcp"]
+  # ingress_with_cidr_blocks = [
+  #   {
+  #     from_port   = 22
+  #     to_port     = 22
+  #     protocol    = "tcp"
+  #     cidr_blocks = "${local.ssh_machine_ip}"
+  #     description = "ssh to server from local PC"
+  #   }
+  # ]
   egress_cidr_blocks = ["0.0.0.0/0"]
   egress_rules       = ["all-all"]
 

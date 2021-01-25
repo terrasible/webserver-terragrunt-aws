@@ -61,7 +61,7 @@ resource "aws_launch_configuration" "this" {
 # Autoscaling group
 ####################
 resource "aws_autoscaling_group" "this" {
-  count = var.create_asg == true  ? 1 : 0
+  count = var.create_asg == true ? 1 : 0
 
   name_prefix = "${join(
     "-",

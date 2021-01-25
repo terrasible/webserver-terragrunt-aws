@@ -49,7 +49,6 @@ variable "image_id" {
 variable "instance_type" {
   description = "The size of instance to launch"
   type        = string
-  default     = ""
 }
 
 variable "iam_instance_profile" {
@@ -121,7 +120,7 @@ variable "ephemeral_block_device" {
 variable "spot_price" {
   description = "The price to use for reserving spot instances"
   type        = string
-  default     = ""
+  default     = "default"
 }
 
 variable "placement_tenancy" {
