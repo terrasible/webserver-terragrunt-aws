@@ -176,3 +176,12 @@ Steps to create the Subscription.
 1. Go to SNS console select the topis creted by terraform.
 2. Click the Subscription button to add it 
 3. Add the mail id on which you want to receive the notifications save it and verify the mail id.
+
+## Destroy the Infrastructure 
+
+Use below command to destroy the infra.
+```	
+	terragrunt destroy-all --terragrunt-non-interactive
+```
+Once the destroy is completed you need to delete the bucket and table named `mastercard-terraform-state` Manually.
+And also need to delete the SNS Subscription which you created manually.`
