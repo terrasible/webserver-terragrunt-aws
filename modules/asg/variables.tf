@@ -120,7 +120,7 @@ variable "ephemeral_block_device" {
 variable "spot_price" {
   description = "The price to use for reserving spot instances"
   type        = string
-  default     = "default"
+  default     = ""
 }
 
 variable "placement_tenancy" {

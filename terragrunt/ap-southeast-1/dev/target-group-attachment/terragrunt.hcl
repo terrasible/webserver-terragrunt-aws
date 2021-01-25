@@ -33,6 +33,6 @@ dependency "alb" {
 
 # These are the variables we have to pass in to use the module specified in the terragrunt configuration above
 inputs = {
-  alb_target_group_arn   = "${dependency.alb.outputs.target_group_arns[0]}"
-  autoscaling_group_name = "${dependency.asg.outputs.autoscaling_group_id[0]}"
+  alb_target_group_arn   = element(dependency.alb.outputs.target_group_arns, 1)
+  autoscaling_group_name = element(dependency.asg.outputs.autoscaling_group_id,1)
 }

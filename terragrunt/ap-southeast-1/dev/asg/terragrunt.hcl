@@ -63,9 +63,9 @@ inputs = {
   asg_name                  = "${local.common_name_prefix}-asg"
   vpc_zone_identifier       = "${dependency.subnet.outputs.private_subnets}"
   health_check_type         = "EC2"
-  min_size                  = 1
+  min_size                  = 2
   max_size                  = 4
-  desired_capacity          = 1
+  desired_capacity          = 2
   wait_for_capacity_timeout = 0
 
   tags = [
