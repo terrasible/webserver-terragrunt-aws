@@ -44,7 +44,7 @@ Minimum capacity of EC2 is 2 and can scale up to 5.
 
 Configured cloudwatch alarm is for Cpu utilization and unhealthy host of alb. ALB Alarm will sent the alerts to SNS topic. We need to create the subscription for SNS manually as email subscription is not supported by terrafrom.
 
-I have used Terragrunt to spun up the environment So One bucket named `mastercard-terraform-state`  and dynamodb table name  `mastercard-terraform-state` will create automatically for storing the tfstate file and for locking the tfstate files.
+I have used Terragrunt to spun up the environment So One bucket named `apache-terraform-state`  and dynamodb table name  `apache-terraform-state` will create automatically for storing the tfstate file and for locking the tfstate files.
 
 I have used the open-source General Module which is maintained and manged by Terrafrom isteslf.The modules whiuch were not maintained my terrafrom is not being used Hence the module is written by me only. I have written below modules in the projects.
 
