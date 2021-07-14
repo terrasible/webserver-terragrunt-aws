@@ -1,7 +1,7 @@
 module "vpc" {
-  source = "https://github.com/terraform-aws-modules/terraform-aws-vpc.git"
-  name   = "codepipe-test-vpc"
-  cidr   = "172.16.0.0/16"
+  source = "git@github.com:terraform-aws-modules/terraform-aws-vpc.git//?ref=v2.66.0"
+  name = "codepipe-test-vpc"
+  cidr = "172.16.0.0/16"
 
   # The zones we will be using will only be ap-southeast-1a, ap-southeast-1b
   azs             = ["ap-southeast-1a", "ap-southeast-1b"]
@@ -27,8 +27,8 @@ module "vpc" {
   }
 }
 module "ec2" {
-  source = "https://github.com/terraform-aws-modules/terraform-aws-ec2-instance.git"
-  name   = "codepipe-test"
+  source = "git@github.com:terraform-aws-modules/terraform-aws-ec2-instance.git"
+  name = "codepipe-test"
 
   ami                         = "ami-02f26adf094f51167"
   instance_count              = 1
@@ -49,7 +49,7 @@ module "ec2" {
 }
 
 module "sg" {
-  source = "https://github.com/terraform-aws-modules/terraform-aws-security-group.git"
+  source = "git@github.com:terraform-aws-modules/terraform-aws-security-group.git//?ref=v3.17.0"
   name   = "codepipe-asg-sg"
   vpc_id = module.vpc.vpc_id
 
@@ -72,5 +72,5 @@ module "sg" {
     ManagedBy   = "codepipe"
     CreatedBY   = "Terraform"
     Environment = "dev"
-  }
-}
+  } 
+}  
