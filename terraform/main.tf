@@ -4,7 +4,7 @@ module "vpc" {
   cidr = "172.16.0.0/16"
 
   # The zones we will be using will only be ap-southeast-1a, ap-southeast-1b
-  azs             = ["ap-southeast-1a", "ap-southeast-1b"]
+  azs             = ["ap-south-1a", "ap-south-1b"]
   private_subnets = ["172.16.1.0/24", "172.16.2.0/24"]
 
   public_subnets = ["172.16.101.0/24", "172.16.102.0/24"]
@@ -35,7 +35,7 @@ module "ec2" {
   instance_type               = "t2.micro"
   subnet_ids                  = module.vpc.public_subnets
   associate_public_ip_address = true
-  key_name                    = "elk-poc"
+  key_name                    = "dev"
   monitoring                  = true
   user_data                   = file("./data.sh")
   vpc_security_group_ids = [
