@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "git@github.com:terraform-aws-modules/terraform-aws-vpc.git//?ref=v2.66.0"
+  source = "git::https://github.com/terraform-aws-modules/terraform-aws-vpc.git"
   name = "codepipe-test-vpc"
   cidr = "172.16.0.0/16"
 
@@ -27,7 +27,7 @@ module "vpc" {
   }
 }
 module "ec2" {
-  source = "git@github.com:terraform-aws-modules/terraform-aws-ec2-instance.git"
+  source = "git::https://github.com/terraform-aws-modules/terraform-aws-ec2-instance.git"
   name = "codepipe-test"
 
   ami                         = "ami-02f26adf094f51167"
@@ -39,7 +39,7 @@ module "ec2" {
   monitoring                  = true
   user_data                   = file("./data.sh")
   vpc_security_group_ids = [
-    module.sg.this_security_group_id
+    module.sg.security_group_id
   ]
   tags = {
     Environment = "dev"
@@ -49,7 +49,7 @@ module "ec2" {
 }
 
 module "sg" {
-  source = "git@github.com:terraform-aws-modules/terraform-aws-security-group.git//?ref=v3.17.0"
+  source = "git::https://github.com/terraform-aws-modules/terraform-aws-security-group.git"
   name   = "codepipe-asg-sg"
   vpc_id = module.vpc.vpc_id
 
