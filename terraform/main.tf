@@ -30,7 +30,7 @@ module "ec2" {
   source = "git::https://github.com/terraform-aws-modules/terraform-aws-ec2-instance.git"
   name = "codepipe-test"
 
-  ami                         = "ami-02f26adf094f51167"
+  ami                         = "ami-00bf4ae5a7909786c"
   instance_count              = 1
   instance_type               = "t2.micro"
   subnet_ids                  = module.vpc.public_subnets
