@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "https://github.com/terraform-aws-modules/terraform-aws-vpc.git//?ref=v2.66.0"
+  source = "https://github.com/terraform-aws-modules/terraform-aws-vpc.git"
   name   = "codepipe-test-vpc"
   cidr   = "172.16.0.0/16"
 
@@ -49,7 +49,7 @@ module "ec2" {
 }
 
 module "sg" {
-  source = "https://github.com/terraform-aws-modules/terraform-aws-security-group.git//?ref=v3.17.0"
+  source = "https://github.com/terraform-aws-modules/terraform-aws-security-group.git"
   name   = "codepipe-asg-sg"
   vpc_id = module.vpc.vpc_id
 
