@@ -10,12 +10,12 @@ variable "vpc_cidr" {
 }
 variable "public_subnets" {
   description = "list of public subnets"
-  type        = list
+  type        = list(any)
   default     = []
 }
 variable "private_subnets" {
   description = "list of Private subnets"
-  type        = list
+  type        = list(any)
   default     = []
 }
 variable "tenancy" {
@@ -49,13 +49,13 @@ variable "enable_ipv6" {
   default     = false
 }
 variable "tags" {
-  type    = map
+  type    = map(any)
   default = {}
 }
 variable "create_ig" {
   description = "controls if user wants to create internet gateway set true if we need to create"
   type        = bool
-  default = true
+  default     = true
 
 }
 variable "map_public_ip_on_launch" {
@@ -74,7 +74,7 @@ variable "create_nat_gateway" {
 
 }
 variable "destination_cidr_block" {
-  default= "0.0.0.0/0"
+  default = "0.0.0.0/0"
 }
 variable "create_public_route" {
   description = "set if you want to create the external route"

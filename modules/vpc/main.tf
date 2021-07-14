@@ -10,7 +10,7 @@ resource "aws_vpc" "main_vpc" {
   enable_dns_support               = var.dns_support
   enable_classiclink_dns_support   = var.enable_classiclink_dns_support
   assign_generated_ipv6_cidr_block = var.enable_ipv6
-  tags                             = merge(
+  tags = merge(
     {
       "Name" = format("%s", var.vpc_name)
     },
@@ -25,9 +25,9 @@ resource "aws_subnet" "private_subnets" {
   count             = length(var.private_subnets) > 0 ? length(var.private_subnets) : 0
   cidr_block        = lookup(var.private_subnets[count.index], "cidr")
   availability_zone = lookup(var.private_subnets[count.index], "az")
-  tags              = merge(
-    { 
-      "Name" = "${var.vpc_name}-pvt_sub_${count.index + 1}" 
+  tags = merge(
+    {
+      "Name" = "${var.vpc_name}-pvt_sub_${count.index + 1}"
     },
     var.tags,
   )
@@ -39,8 +39,8 @@ resource "aws_subnet" "public_subnets" {
   cidr_block              = lookup(var.public_subnets[count.index], "cidr")
   map_public_ip_on_launch = var.map_public_ip_on_launch
   availability_zone       = lookup(var.public_subnets[count.index], "az")
-  tags              = merge(
-    { 
+  tags = merge(
+    {
       "Name" = "${var.vpc_name}-pub_sub_${count.index + 1}"
     },
     var.tags,
@@ -51,10 +51,10 @@ resource "aws_subnet" "public_subnets" {
  * Gateway
  */
 resource "aws_internet_gateway" "main_gateway" {
-  vpc_id     = aws_vpc.main_vpc.id
-  count      = length(var.public_subnets) > 0 || var.create_ig == true ? 1 : 0
-  tags              = merge(
-    { 
+  vpc_id = aws_vpc.main_vpc.id
+  count  = length(var.public_subnets) > 0 || var.create_ig == true ? 1 : 0
+  tags = merge(
+    {
       "Name" = "${var.vpc_name}-ig_${count.index + 1}"
     },
     var.tags,
@@ -62,10 +62,10 @@ resource "aws_internet_gateway" "main_gateway" {
 }
 
 resource "aws_eip" "main_eip" {
-  count      = length(var.private_subnets) > 0 || var.create_eip == true ? 1 : 0
-  vpc        = true
-  tags       = merge(
-    { 
+  count = length(var.private_subnets) > 0 || var.create_eip == true ? 1 : 0
+  vpc   = true
+  tags = merge(
+    {
       "Name" = "${var.vpc_name}-eip_${count.index + 1}"
     },
     var.tags,
@@ -76,8 +76,8 @@ resource "aws_nat_gateway" "main_natgateway" {
   allocation_id = aws_eip.main_eip[count.index].id
   subnet_id     = element(aws_subnet.public_subnets.*.id, 1)
   depends_on    = [aws_internet_gateway.main_gateway, aws_subnet.public_subnets]
-  tags              = merge(
-    { 
+  tags = merge(
+    {
       "Name" = "${var.vpc_name}-nat_${count.index + 1}"
     },
     var.tags,
@@ -89,8 +89,8 @@ resource "aws_nat_gateway" "main_natgateway" {
 resource "aws_route_table" "public_route_table" {
   count  = length(var.public_subnets) > 0 ? 1 : 0
   vpc_id = aws_vpc.main_vpc.id
-  tags              = merge(
-    { 
+  tags = merge(
+    {
       "Name" = "${var.vpc_name}-pub-rt_${count.index + 1}"
     },
     var.tags,
@@ -106,8 +106,8 @@ resource "aws_route" "Public_route" {
 resource "aws_route_table" "private_route_table" {
   count  = length(var.private_subnets) > 0 ? 1 : 0
   vpc_id = aws_vpc.main_vpc.id
-  tags              = merge(
-    { 
+  tags = merge(
+    {
       "Name" = "${var.vpc_name}-pvt-rt_${count.index + 1}"
     },
     var.tags,
@@ -174,6 +174,6 @@ resource "aws_default_security_group" "main" {
     {
       "Name" = format("%s", "${var.vpc_name}-default-sg")
     },
-    var.tags,  
+    var.tags,
   )
 }

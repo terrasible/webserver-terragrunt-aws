@@ -14,12 +14,12 @@ resource "aws_cloudwatch_metric_alarm" "main" {
   actions_enabled           = var.actions_enabled
   insufficient_data_actions = var.insufficient_data_actions
   ok_actions                = var.ok_actions
-  dimensions = var.dimensions
-  tags                      = merge(
-    { 
+  dimensions                = var.dimensions
+  tags = merge(
+    {
       "Name" = format("%s", var.alarm_name)
     },
     var.tags,
   )
-  
+
 }

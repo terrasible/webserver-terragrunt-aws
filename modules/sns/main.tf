@@ -1,7 +1,7 @@
 resource "aws_sns_topic" "sns" {
   name = var.name
   tags = merge(
-    { 
+    {
       "Name" = format("%s", var.name)
     },
     var.tags,
@@ -10,7 +10,7 @@ resource "aws_sns_topic" "sns" {
 
 
 variable "name" {
-  type=string
+  type = string
 }
 
 variable "tags" {
@@ -20,9 +20,9 @@ variable "tags" {
 }
 
 output "id" {
-  value= aws_sns_topic.sns.id
+  value = aws_sns_topic.sns.id
 }
 
 output "arn" {
-  value= aws_sns_topic.sns.arn
+  value = aws_sns_topic.sns.arn
 }

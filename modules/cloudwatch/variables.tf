@@ -22,7 +22,7 @@ variable "comparison_operator" {
 
 variable "evaluation_periods" {
   type        = number
-  default     = 2 
+  default     = 2
   description = "The number of periods over which data is compared to the specified threshold."
 }
 variable "metric_name" {
@@ -60,7 +60,7 @@ variable "actions_enabled" {
 }
 
 variable "insufficient_data_actions" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state from any other state."
 }
@@ -70,19 +70,19 @@ variable "tags" {
   default     = {}
 }
 variable "dimensions" {
-  type= map(string)
+  type        = map(string)
   default     = {}
   description = "Dimensions for metrics."
 }
 
 variable "ok_actions" {
   description = "The list of actions to execute when this alarm transitions into an OK state from any other state."
-  type        = list
+  type        = list(any)
   default     = []
 }
 
 variable "alarm_actions" {
   description = "The list of actions to execute when this alarm transitions into an ALARM state from any other state."
-  type        = list
+  type        = list(any)
   default     = []
 }

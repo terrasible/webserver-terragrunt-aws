@@ -1,13 +1,13 @@
-variable "domain"{
-    type=string
+variable "domain" {
+  type = string
 }
 
-variable "organization"{
-    type=string
+variable "organization" {
+  type = string
 }
 variable "validity_period_hours" {
-    type=number
-    default=240 
+  type    = number
+  default = 240
 }
 
 variable "tags" {

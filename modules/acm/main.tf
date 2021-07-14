@@ -23,8 +23,8 @@ resource "tls_self_signed_cert" "main" {
 resource "aws_acm_certificate" "cert" {
   private_key      = tls_private_key.main.private_key_pem
   certificate_body = tls_self_signed_cert.main.cert_pem
-  tags             = merge(
-    { 
+  tags = merge(
+    {
       "Name" = format("%s", var.domain)
     },
     var.tags,
